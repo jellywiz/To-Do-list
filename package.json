@@ -1,5 +1,5 @@
 {
-  "name": "web-template",
+  "name": "to-do-list",
   "version": "1.0.0",
   "lockfileVersion": 2,
   "requires": true,
@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mhamad-Raad/Web-Template.git"
+    "url": "git+https://github.com/jellywiz/To-Do-list.git"
   },
   "keywords": [],
-  "author": "Mhamad Raad",
+  "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Mhamad-Raad/Web-Template/issues"
+    "url": "https://github.com/jellywiz/To-Do-list/issues"
   },
-  "homepage": "https://github.com/Mhamad-Raad/Web-Template#readme",
+  "homepage": "https://github.com/jellywiz/To-Do-list#readme",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "babel-eslint": "^10.1.0",
