@@ -2,7 +2,7 @@
 
 # To-Do-List
 
-> This is a project adding, removing list as marking of being done.
+> This is a project for adding and removing todolist.
 
 ## Built With
 
