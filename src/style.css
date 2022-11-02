@@ -66,10 +66,15 @@ body {
   border-style: none;
 }
 
+.list-description:focus {
+  outline: none;
+}
+
 .check-box:checked + .list-description {
   text-decoration: line-through;
   width: 82%;
   border: none;
+  font-style: italic;
 }
 
 .fa-solid {
@@ -80,6 +85,8 @@ body {
 }
 
 .remove-btn {
+  background: transparent;
+  cursor: pointer;
   width: 90%;
   height: 50px;
   border: 1px solid white;
@@ -88,4 +95,27 @@ body {
   background-color: white;
   color: rgb(192, 192, 192);
   font-size: 16px;
+}
+
+.active {
+  background-color: lightgray;
+  color: white;
+  font-weight: bold;
+}
+
+.fa-ellipsis-vertical {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  width: 10%;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  display: none;
+  width: 10%;
+  height: 100%;
+  cursor: pointer;
+  font-weight: bold;
 }
