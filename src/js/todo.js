@@ -1,7 +1,7 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 const addText = document.querySelector('.input-text');
 const todoDiv = document.querySelector('.lists');
-const activities = localStorage.getItem('activities') !== null ? JSON.parse(localStorage.getItem('todo')) : [];
+const activities = localStorage.getItem('todo') !== null ? JSON.parse(localStorage.getItem('todo')) : [];
 let index = activities.length;
 
 const render = () => {
