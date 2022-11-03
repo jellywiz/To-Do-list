@@ -1,7 +1,8 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 const addText = document.querySelector('.input-text');
 const todoDiv = document.querySelector('.lists');
-const activities = localStorage.getItem('todo') !== null ? JSON.parse(localStorage.getItem('todo')) : [];
+const removeBtn = document.querySelector('.remove-btn');
+let activities = localStorage.getItem('todo') !== null ? JSON.parse(localStorage.getItem('todo')) : [];
 let index = activities.length;
 
 const render = () => {
@@ -80,6 +81,16 @@ addText.addEventListener('keypress', (e) => {
       render();
     }
   }
+});
+
+removeBtn.addEventListener('click', () => {
+  activities = activities.filter((todo) => todo.completed !== true);
+  for (let i = 0; i < activities.length; i += 1) {
+    activities[i].index = i + 1;
+  }
+  index = activities.length;
+  localStorage.setItem('todo', JSON.stringify(activities));
+  render();
 });
 
 window.onload = render();
