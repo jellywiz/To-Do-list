@@ -1,6 +1,7 @@
 /*
 * @jest-environment jsdom
 */
+/* eslint-disable import/no-unresolved */
 
 const deleteItem = require('./src/js/deletetodo.js');
 const addTodo = require('./src/js/addtodos.js');
