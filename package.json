@@ -7,7 +7,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "main": "App.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --coverage",
     "build": "webpack",
     "start": "webpack serve --open",
     "deploy": "gh-pages -d dist"
@@ -27,11 +27,6 @@
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "babel-eslint": "^10.1.0",
     "css-loader": "^6.7.1",
-    "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.26.0",
-    "gh-pages": "^4.0.0",
-    "hint": "^7.1.3",
     "html-webpack-plugin": "^5.5.0",
     "jest": "^28.1.3",
     "jest-environment-jsdom": "^28.1.3",
@@ -45,14 +40,15 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0"
   },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "mock-localstorage": "^0.2.0"
+  },
   "jest": {
     "resetMocks": false,
     "testEnvironment": "jsdom",
     "setupFiles": [
       "jest-localstorage-mock"
     ]
-  },
-  "dependencies": {
-    "lodash": "^4.17.21"
   }
 }

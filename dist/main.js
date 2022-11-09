@@ -145,7 +145,7 @@ eval("function addAnItem(info, todos) {\n  todos.push(info);\n  return todos;\n}
   \******************************/
 /***/ ((module) => {
 
-eval("function deleteItem(i, todos) {\n  todos.splice(i, 1);\n  return todos;\n}\n\nmodule.exports = deleteItem;\n\n//# sourceURL=webpack://to-do-list/./src/js/deletetodo.js?");
+eval("function deleteItem(i, todos) {\n  todos.splice(i, 1);\n  return todos;\n}\n\nmodule.exports = deleteItem;\n\n\n//# sourceURL=webpack://to-do-list/./src/js/deletetodo.js?");
 
 /***/ }),
 
