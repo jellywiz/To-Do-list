@@ -1,3 +1,7 @@
+/*
+* @jest-environment jsdom
+*/
+
 const deleteItem = require('./src/js/deletetodo.js');
 const addTodo = require('./src/js/addtodos.js');
 
