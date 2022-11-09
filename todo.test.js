@@ -27,9 +27,6 @@ describe('todo functions ADD', () => {
     const list = document.querySelectorAll('.works');
     expect(list).toHaveLength(result.length);
   });
-});
-
-describe('todo functions DELETE', () => {
   test('delete an item', () => {
     const todos = [
       {
