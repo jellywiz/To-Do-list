@@ -1,6 +1,6 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
-import deleteItem from './deletetodo';
-import addAnItem from './addtodos';
+import deleteItem from './deletetodo.js';
+import addAnItem from './addtodos.js';
 
 const addText = document.querySelector('.input-text');
 const todoDiv = document.querySelector('.lists');
