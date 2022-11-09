@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 import deleteItem from './deletetodo.js';
 import addAnItem from './addtodos.js';
