@@ -1,4 +1,7 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
+import deleteItem from './deletetodo.js';
+import addAnItem from './addtodos.js';
+
 const addText = document.querySelector('.input-text');
 const todoDiv = document.querySelector('.lists');
 const removeBtn = document.querySelector('.remove-btn');
@@ -34,12 +37,12 @@ const render = () => {
     });
 
     todoDiv.querySelectorAll('.todo')[i].querySelector('.delete-btn').addEventListener('click', () => {
-      activities.splice(i, 1);
-      for (let a = i; a < activities.length; a += 1) {
-        activities[a].index -= 1;
+      const updTodo = deleteItem(i, activities);
+      for (let a = i; a < updTodo.length; a += 1) {
+        updTodo[a].index -= 1;
       }
       index -= 1;
-      localStorage.setItem('todo', JSON.stringify(activities));
+      localStorage.setItem('todo', JSON.stringify(updTodo));
       render();
     });
 
@@ -70,14 +73,8 @@ addText.addEventListener('keypress', (e) => {
       const todoVal = addText.value;
       addText.value = '';
       index += 1;
-      activities.push(
-        {
-          index: index,
-          desc: todoVal,
-          completed: false,
-        },
-      );
-      localStorage.setItem('todo', JSON.stringify(activities));
+      const updTodo = addAnItem({ index: index, desc: todoVal, completed: false }, activities);
+      localStorage.setItem('todo', JSON.stringify(updTodo));
       render();
     }
   }
