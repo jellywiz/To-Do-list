@@ -2,6 +2,9 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 import deleteItem from './deletetodo.js';
 import addAnItem from './addtodos.js';
+import updateTodo from './updatetodos.js';
+import checkTodo from './checktodos.js';
+import clearAllBtn from './clearallbtn.js';
 
 const addText = document.querySelector('.input-text');
 const todoDiv = document.querySelector('.lists');
@@ -26,8 +29,9 @@ const render = () => {
 
   for (let i = 0; i < todoDiv.querySelectorAll('.todo').length; i += 1) {
     todoDiv.querySelectorAll('.todo')[i].querySelector('.check-box').addEventListener('click', () => {
-      activities[i].completed = !activities[i].completed;
-      localStorage.setItem('todo', JSON.stringify(activities));
+      const result = checkTodo(i, activities);
+      localStorage.setItem('todo', JSON.stringify(result));
+      render();
     });
 
     todoDiv.querySelectorAll('.todo')[i].addEventListener('focusin', () => {
@@ -59,8 +63,8 @@ const render = () => {
     });
 
     todoDiv.querySelectorAll('.todo')[i].querySelector('.list-description').addEventListener('change', (e) => {
-      activities[i].desc = e.target.value;
-      localStorage.setItem('todo', JSON.stringify(activities));
+      const result = updateTodo(i, activities, e.target.value);
+      localStorage.setItem('todo', JSON.stringify(result));
     });
   }
 };
@@ -82,10 +86,7 @@ addText.addEventListener('keypress', (e) => {
 });
 
 removeBtn.addEventListener('click', () => {
-  activities = activities.filter((todo) => todo.completed !== true);
-  for (let i = 0; i < activities.length; i += 1) {
-    activities[i].index = i + 1;
-  }
+  activities = clearAllBtn(activities);
   index = activities.length;
   localStorage.setItem('todo', JSON.stringify(activities));
   render();
