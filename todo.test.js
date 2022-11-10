@@ -47,7 +47,7 @@ describe('todo functions ADD', () => {
     expect(JSON.parse(localStorage.getItem('todos'))).toEqual(result);
     document.body.innerHTML = '';
     for (let i = 0; i < result.length; i += 1) {
-      document.body.innerHTML += '<div class="works" id="works">'
+      document.body.innerHTML += '<div class="works">'
         + '  <ul id="list"><li></li></ul>'
         + '</div>';
     }
