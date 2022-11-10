@@ -2,13 +2,20 @@
 /* eslint-dsibale no-loop-func, no-func-assign, no-class-assign */
 import deleteItem from './deletetodo.js';
 import addAnItem from './addtodos.js';
+import updateTodo from './updatetodos.js';
+import checkTodo from './checktodos.js';
+import clearAllBtn from './clearallbtn.js';
 
+// Getting the selectors from the DOM
 const addText = document.querySelector('.input-text');
 const todoDiv = document.querySelector('.lists');
 const removeBtn = document.querySelector('.remove-btn');
+// Creating the array of objects to store the todos and retrive data from local storage
 let activities = localStorage.getItem('todo') !== null ? JSON.parse(localStorage.getItem('todo')) : [];
+// Calculating the lengths of the todos
 let index = activities.length;
 
+// Constatntly updaing the UI and render dynamicly.
 const render = () => {
   if (activities !== null) {
     todoDiv.innerHTML = '';
@@ -23,21 +30,23 @@ const render = () => {
             </div>`;
     });
   }
-
+  // Cheking the checkbox and saving the data to local storage
   for (let i = 0; i < todoDiv.querySelectorAll('.todo').length; i += 1) {
     todoDiv.querySelectorAll('.todo')[i].querySelector('.check-box').addEventListener('click', () => {
-      activities[i].completed = !activities[i].completed;
-      localStorage.setItem('todo', JSON.stringify(activities));
+      const result = checkTodo(i, activities);
+      localStorage.setItem('todo', JSON.stringify(result));
+      render();
     });
 
     todoDiv.querySelectorAll('.todo')[i].addEventListener('focusin', () => {
-      todoDiv.querySelectorAll('.todo')[i].classList.add('active');
       todoDiv.querySelectorAll('.todo')[i].querySelector('.list-description').classList.add('active');
-      todoDiv.querySelectorAll('.todo')[i].querySelector('.delete-btn').style.display = 'block';
+      todoDiv.querySelectorAll('.todo')[i].classList.add('active');
       todoDiv.querySelectorAll('.todo')[i].querySelector('.fa-ellipsis-vertical').style.display = 'none';
+      todoDiv.querySelectorAll('.todo')[i].querySelector('.delete-btn').style.display = 'block';
     });
-
+    // Deleting a todo and saving the data to local storage
     todoDiv.querySelectorAll('.todo')[i].querySelector('.delete-btn').addEventListener('click', () => {
+      // Calling the delete function from the deletetodo.js file
       const updTodo = deleteItem(i, activities);
       for (let a = i; a < updTodo.length; a += 1) {
         updTodo[a].index -= 1;
@@ -46,7 +55,6 @@ const render = () => {
       localStorage.setItem('todo', JSON.stringify(updTodo));
       render();
     });
-
     todoDiv.querySelectorAll('.todo')[i].addEventListener('focusout', (e) => {
       const parent = todoDiv.querySelectorAll('.todo')[i];
       const leavingParent = !parent.contains(e.relatedTarget);
@@ -57,13 +65,26 @@ const render = () => {
         todoDiv.querySelectorAll('.todo')[i].querySelector('.delete-btn').style.display = 'none';
       }
     });
-
+    // Editing a todo and saving the data to local storage
     todoDiv.querySelectorAll('.todo')[i].querySelector('.list-description').addEventListener('change', (e) => {
-      activities[i].desc = e.target.value;
-      localStorage.setItem('todo', JSON.stringify(activities));
+      // Calling Updatetodo function from the updatetodo.js file
+      const result = updateTodo(i, activities, e.target.value);
+      localStorage.setItem('todo', JSON.stringify(result));
     });
   }
 };
+// While the page is first loaded it will render the todos
+window.onload = render();
+// Adding a todo and saving the data to local storage on press key
+
+// Clear all buttom and saving the data to local storage
+removeBtn.addEventListener('click', () => {
+  activities = clearAllBtn(activities);
+  index = activities.length;
+  localStorage.setItem('todo', JSON.stringify(activities));
+  // rendering all again
+  render();
+});
 
 addText.addEventListener('keypress', (e) => {
   if (e.key === 'Enter') {
@@ -80,15 +101,3 @@ addText.addEventListener('keypress', (e) => {
     }
   }
 });
-
-removeBtn.addEventListener('click', () => {
-  activities = activities.filter((todo) => todo.completed !== true);
-  for (let i = 0; i < activities.length; i += 1) {
-    activities[i].index = i + 1;
-  }
-  index = activities.length;
-  localStorage.setItem('todo', JSON.stringify(activities));
-  render();
-});
-
-window.onload = render();
