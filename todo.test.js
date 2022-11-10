@@ -5,7 +5,7 @@
 
 const deleteItem = require('./src/js/deletetodo.js');
 const addTodo = require('./src/js/addtodos.js');
-
+// ------------------------------------------------------------
 describe('todo functions ADD', () => {
   test('add a todo', () => {
     const todo = {
@@ -47,7 +47,7 @@ describe('todo functions ADD', () => {
     expect(JSON.parse(localStorage.getItem('todos'))).toEqual(result);
     document.body.innerHTML = '';
     for (let i = 0; i < result.length; i += 1) {
-      document.body.innerHTML += '<div class="works">'
+      document.body.innerHTML += '<div class="works" id="works">'
         + '  <ul id="list"><li></li></ul>'
         + '</div>';
     }
@@ -55,3 +55,4 @@ describe('todo functions ADD', () => {
     expect(list).toHaveLength(result.length);
   });
 });
+// ----------------------------------------------------
